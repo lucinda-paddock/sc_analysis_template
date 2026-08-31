@@ -2,7 +2,6 @@
 
 A [cookiecutter](https://cookiecutter.readthedocs.io/)/[cruft](https://cruft.github.io/cruft/) template for single-cell analysis projects. It scaffolds a ready-to-run project (notebooks, scripts, a `src/` package, Jupyter Book docs, pre-commit hooks) with all the project-specific values filled in automatically, and later lets you pull template improvements into a project you already generated.
 
-You can check out the [CellRank 2](https://github.com/theislab/cellrank2_reproducibility) and [CellRank protocol](https://github.com/theislab/cellrank_protocol) reproducibility repositories for example repositories following the same outline as this template, built off an earlier version of it.
 
 ## Create a project
 
