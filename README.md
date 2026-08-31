@@ -24,13 +24,13 @@ You'll be prompted for:
 cd <project_name>
 uv venv
 uv sync --all-groups
+git init
 uv run pre-commit install
 ```
 
 If the repo is private and you authenticate over HTTPS with a PAT:
 
 ```bash
-git init
 ./.set_gh_remote.sh <your-PAT>
 ```
 
