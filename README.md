@@ -27,10 +27,6 @@ uv sync --all-groups
 uv run pre-commit install
 ```
 
-For the Jupyter Book to deploy on push to `main`, set up the repository once:
-- `Settings > Actions > General > Workflow permissions`: allow read and write permissions.
-- `Settings > Pages > Build and deployment`: set `GitHub Actions` as Source.
-
 If the repo is private and you authenticate over HTTPS with a PAT:
 
 ```bash

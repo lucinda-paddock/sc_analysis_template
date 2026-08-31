@@ -1,6 +1,6 @@
 # {{ cookiecutter.project_name }}
 
-{{ cookiecutter.package_description }} The corresponding Jupyter Book is rendered [here](https://{{ cookiecutter.github_namespace }}.github.io/{{ cookiecutter.github_repo_name }}/).
+{{ cookiecutter.package_description }}
 
 ## Project structure
 
@@ -105,11 +105,19 @@ Accessible from `{{ cookiecutter.package_name }}.stats`.
 
 - `is_outlier`: identifies putative outlier observations based on median absolute deviations.
 
-## Repository setup
+## Quick start
 
-For the Jupyter Book to deploy on push to `main`, set up the repository once:
-- `Settings > Actions > General > Workflow permissions`: allow read and write permissions.
-- `Settings > Pages > Build and deployment`: set `GitHub Actions` as Source.
+Create a notebook or script under `notebooks/` or `scripts/`, and import utilities from `{{ cookiecutter.package_name }}`.
+
+```bash
+uv venv
+uv sync --group jupyter
+uv run python -c "import {{ cookiecutter.package_name }}; print('ready')"
+```
+
+## Things to keep in mind
+
+Whenever you use a new single-cell tool, add it to `bio` in `pyproject.toml` so `isort` can work correctly.
 
 If the repo is private and you authenticate over HTTPS with a PAT:
 
@@ -118,25 +126,6 @@ If the repo is private and you authenticate over HTTPS with a PAT:
 ```
 
 This sets `origin` to `https://<github_username>:<PAT>@github.com/<github_namespace>/<repo>.git` — the PAT is only ever passed as a CLI argument, never stored in any file.
-
-## Things to keep in mind
-
-Whenever you use a new single-cell tool, add it to `bio` in `pyproject.toml` so `isort` can work correctly.
-
-## Documentation
-
-The Jupyter Book is deployed [here](https://{{ cookiecutter.github_namespace }}.github.io/{{ cookiecutter.github_repo_name }}/) on every push to `main`. To build and preview it locally:
-
-```bash
-cd notebooks
-uv run jupyter-book build --html
-```
-
-`notebooks/index.md` is generated from this README by a pre-commit hook (a 3-way merge via `git merge-file`) — edit this README, not `index.md` directly; a direct edit there is merged rather than clobbered, but conflicts show up as ordinary git conflict markers that need resolving by hand.
-
-## Workflow
-
-The workflow for committing a notebook is as follows: Upon committing a notebook, the pre-commit hooks format your notebook and generate a corresponding script. You need to add the formatted notebook and Python script to the same commit for the commit to go through. The commit will now either be successful or not. If not, your Python script was formatted by the pre-commit hooks. In that case, you need to update your notebook accordingly, unstage the Python script, and recommit the notebook. You will iterate through this process until there are no inconsistencies between the notebook and its corresponding Python script.
 
 ## License
 

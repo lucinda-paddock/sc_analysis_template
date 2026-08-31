@@ -29,13 +29,6 @@ repos:
         args: [--fix, --exit-non-zero-on-fix]
       - id: ruff-format
         types_or: [python, pyi, jupyter]
-  - repo: https://github.com/mwouts/jupytext
-    rev: v1.14.5
-    hooks:
-      - id: jupytext
-        args: [--from, ipynb, --sync, --pipe, "ruff format -", --pipe-fmt, "py:percent"]
-        additional_dependencies:
-            - ruff==0.15.11 # Matches hook
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
@@ -69,12 +62,6 @@ repos:
           Fix the merge conflicts manually and remove the .rej files.
         language: fail
         files: '.*\.rej$'
-      - id: sync-readme-to-index
-        name: "Sync {{ cookiecutter.project_name }}/README.md -> notebooks/index.md (3-way merge on conflict)"
-        entry: bash -c 'cd "{{ cookiecutter.project_name }}" && ./.sync_readme_to_index.sh'
-        language: system
-        files: '^\{\{ cookiecutter\.project_name \}\}/(README\.md|notebooks/index\.md)$'
-        pass_filenames: false
       - id: check-import-calls
         name: Check _import(...) bootstrap calls are internally consistent
         entry: python3 hooks/_check_import_calls.py
